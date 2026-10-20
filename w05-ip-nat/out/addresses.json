@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Home Wi-Fi",
+    "local": {
+      "os": "Windows",
+      "interface_ipv4": "192.0.2.21",
+      "subnet_mask": "255.255.255.0",
+      "gateway": "192.0.2.1",
+      "dhcp_server": "192.0.2.1",
+      "raw_output": "[WITHHELD: local private archive]"
+    },
+    "public": "[REDACTED_PUBLIC_A]",
+    "privacy": {
+      "redacted": true,
+      "addresses": "private host/subnet addresses replaced with RFC 5737 examples; public IP withheld",
+      "not_literal_measurements": true
+    }
+  },
+  {
+    "label": "Phone tethering",
+    "local": {
+      "os": "Windows",
+      "interface_ipv4": "198.51.100.2",
+      "subnet_mask": "255.255.255.240",
+      "gateway": "198.51.100.1",
+      "dhcp_server": "198.51.100.1",
+      "raw_output": "[WITHHELD: local private archive]"
+    },
+    "public": "[REDACTED_PUBLIC_B]",
+    "when": "2026-10-20T14:28:25+09:00",
+    "privacy": {
+      "redacted": true,
+      "addresses": "private host/subnet addresses replaced with RFC 5737 examples; public IP withheld",
+      "not_literal_measurements": true
+    }
+  }
+]

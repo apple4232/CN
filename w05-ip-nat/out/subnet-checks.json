@@ -1,0 +1,36 @@
+[
+  {
+    "label": "Home Wi-Fi",
+    "cidr_from_hand_calculation": "192.0.2.0/24",
+    "expected_by_hand": [
+      "192.0.2.1",
+      "192.0.2.254",
+      "192.0.2.255"
+    ],
+    "task1_result": [
+      "192.0.2.1",
+      "192.0.2.254",
+      "192.0.2.255"
+    ],
+    "matches": true,
+    "gateway": "192.0.2.1",
+    "gateway_in_usable_range": true
+  },
+  {
+    "label": "Phone tethering",
+    "cidr_from_hand_calculation": "198.51.100.0/28",
+    "expected_by_hand": [
+      "198.51.100.1",
+      "198.51.100.14",
+      "198.51.100.15"
+    ],
+    "task1_result": [
+      "198.51.100.1",
+      "198.51.100.14",
+      "198.51.100.15"
+    ],
+    "matches": true,
+    "gateway": "198.51.100.1",
+    "gateway_in_usable_range": true
+  }
+]

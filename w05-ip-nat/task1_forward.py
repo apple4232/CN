@@ -16,6 +16,30 @@ exactly the thing you are supposed to understand this week.
 import argparse
 
 
+def address_int(address):
+    """Strict dotted-decimal IPv4, assembled with shifts."""
+    if not isinstance(address, str):
+        raise ValueError("IPv4 address must be a string")
+    parts = address.split(".")
+    if len(parts) != 4:
+        raise ValueError("IPv4 needs four octets")
+    result = 0
+    for part in parts:
+        if not part or not part.isascii() or not part.isdecimal():
+            raise ValueError("Invalid octet")
+        if len(part) > 1 and part[0] == "0":
+            raise ValueError("Leading zeros are ambiguous")
+        value = int(part)
+        if value > 255:
+            raise ValueError("Octet out of range")
+        result = (result << 8) | value
+    return result
+
+
+def address_text(value):
+    return ".".join(str((value >> shift) & 255) for shift in (24, 16, 8, 0))
+
+
 def parse_cidr(cidr):
     """'163.152.6.0/24' -> (network as int, prefix length).
 
@@ -23,7 +47,19 @@ def parse_cidr(cidr):
     whose host bits are set when they should not be (163.152.6.5/24 is a
     common way to write a host, but it is not a network).
     """
-    raise NotImplementedError("parse a CIDR block")
+    if not isinstance(cidr, str) or cidr.count("/") != 1:
+        raise ValueError("Expected address/prefix")
+    address, length = cidr.split("/")
+    if not length or not length.isascii() or not length.isdecimal():
+        raise ValueError("Prefix must be 0 through 32")
+    prefix = int(length)
+    if not 0 <= prefix <= 32:
+        raise ValueError("Prefix must be 0 through 32")
+    network = address_int(address)
+    mask = (0xFFFFFFFF << (32 - prefix)) & 0xFFFFFFFF
+    if network & mask != network:
+        raise ValueError("Host bits must be zero")
+    return network, prefix
 
 
 def network_range(cidr):
@@ -32,7 +68,13 @@ def network_range(cidr):
     Careful at the edges. /31 and /32 do not have a usable host range in the
     ordinary sense - decide what you return and say so in observation.md.
     """
-    raise NotImplementedError("compute the range")
+    network, prefix = parse_cidr(cidr)
+    upper = network | ((1 << (32 - prefix)) - 1)
+    # /31: both point-to-point endpoints; /32: the single host.
+    # The third value is the arithmetic upper address, not an operative
+    # directed broadcast on /31 or /32.
+    first, last = (network, upper) if prefix >= 31 else (network + 1, upper - 1)
+    return tuple(address_text(value) for value in (first, last, upper))
 
 
 class ForwardingTable:
@@ -41,15 +83,25 @@ class ForwardingTable:
     add(cidr, next_hop)  ·  lookup(address) -> next_hop or None
 
     The default route 0.0.0.0/0 matches everything and is the shortest prefix,
-    so it must lose to any other match. If two entries have the same prefix
-    length, the table is malformed - say what you do.
+    so it must lose to any other match. Different networks may share a length;
+    duplicate identical network/prefix entries retain the first next hop.
     """
 
+    def __init__(self):
+        self.entries = []
+
     def add(self, cidr, next_hop):
-        raise NotImplementedError
+        network, prefix = parse_cidr(cidr)
+        self.entries.append((network, prefix, next_hop))
 
     def lookup(self, address):
-        raise NotImplementedError
+        value = address_int(address)
+        best_length, best_hop = -1, None
+        for network, prefix, hop in self.entries:
+            mask = (0xFFFFFFFF << (32 - prefix)) & 0xFFFFFFFF
+            if value & mask == network and prefix > best_length:
+                best_length, best_hop = prefix, hop
+        return best_hop  # Equal identical prefixes: first insertion wins.
 
 
 # ------------------------------------------------------------------- harness

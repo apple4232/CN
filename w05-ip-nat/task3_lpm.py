@@ -55,10 +55,31 @@ class YourTable:
     """
 
     def __init__(self):
-        raise NotImplementedError("write your table")
+        self.groups = {}
+        self.search = ()
+        self.missing = object()
 
     def add(self, network, prefix_len, next_hop):
-        raise NotImplementedError
+        if not isinstance(prefix_len, int) or not 0 <= prefix_len <= 32:
+            raise ValueError("Prefix must be 0 through 32")
+        if not isinstance(network, int) or not 0 <= network <= 0xFFFFFFFF:
+            raise ValueError("Network must be an unsigned 32-bit integer")
+        mask = (0xFFFFFFFF << (32 - prefix_len)) & 0xFFFFFFFF
+        if network & mask != network:
+            raise ValueError("Host bits must be zero")
+        if prefix_len not in self.groups:
+            self.groups[prefix_len] = {}
+            self.search = tuple(
+                ((0xFFFFFFFF << (32 - p)) & 0xFFFFFFFF, self.groups[p].get)
+                for p in sorted(self.groups, reverse=True)
+            )
+        # The reference retains the first next hop for duplicate prefixes.
+        self.groups[prefix_len].setdefault(network, next_hop)
 
     def lookup(self, address):
-        raise NotImplementedError
+        missing = self.missing
+        for mask, get in self.search:
+            hop = get(address & mask, missing)
+            if hop is not missing:
+                return hop
+        return None

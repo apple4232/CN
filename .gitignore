@@ -8,6 +8,9 @@ __pycache__/
 !w04-tcp/out/
 !w04-tcp/out/**
 !w04-tcp/out/*.pcapng
+!w05-ip-nat/out/
+!w05-ip-nat/out/**
+!w05-ip-nat/out/*.pcapng
 .lab-deps/
 .lab-certs.pem
 !w03-dns/out/

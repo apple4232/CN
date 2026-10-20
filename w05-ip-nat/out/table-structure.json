@@ -1,0 +1,16 @@
+{
+  "routes": 5000,
+  "active_prefix_lengths": [
+    24,
+    22,
+    20,
+    16,
+    12,
+    8,
+    0
+  ],
+  "bucket_count": 7,
+  "stored_networks": 5000,
+  "dictionary_shallow_bytes": 217296,
+  "note": "shallow dictionary storage only; excludes keys, next-hop strings, instance, and search tuple"
+}
