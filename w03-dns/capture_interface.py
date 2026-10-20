@@ -12,7 +12,9 @@ import threading
 import time
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / 'out'
+sys.path.insert(0, str(HERE.parent))
+from network_privacy import private_output_dir
+OUT = private_output_dir('w03-dns')
 
 
 def main():

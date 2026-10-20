@@ -20,3 +20,6 @@ w03-dns/out/own-dns*.pcapng
 w03-dns/out/*.etl
 w03-dns/out/capture-run.txt
 w03-dns/out/capture-status.txt
+w03-dns/out/dns.pcapng
+*.raw.json
+.private/

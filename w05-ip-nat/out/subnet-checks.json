@@ -14,7 +14,8 @@
     ],
     "matches": true,
     "gateway": "192.0.2.1",
-    "gateway_in_usable_range": true
+    "gateway_in_usable_range": true,
+    "privacy": "RFC 5737 documentation substitutions; not literal host addresses"
   },
   {
     "label": "Phone tethering",
@@ -31,6 +32,7 @@
     ],
     "matches": true,
     "gateway": "198.51.100.1",
-    "gateway_in_usable_range": true
+    "gateway_in_usable_range": true,
+    "privacy": "RFC 5737 documentation substitutions; not literal host addresses"
   }
 ]

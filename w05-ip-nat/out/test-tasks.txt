@@ -1,7 +1,7 @@
 
 === Task 1
   ok   [1] R6 no ipaddress module
-  ok    192.0.2.0/24     ('192.0.2.1', '192.0.2.254', '192.0.2.255')
+  ok    192.168.0.0/24     ('192.168.0.1', '192.168.0.254', '192.168.0.255')
   ok    10.0.0.0/8         ('10.0.0.1', '10.255.255.254', '10.255.255.255')
   ok    172.16.32.0/20     ('172.16.32.1', '172.16.47.254', '172.16.47.255')
   ok    203.0.113.64/26    ('203.0.113.65', '203.0.113.126', '203.0.113.127')
@@ -22,9 +22,9 @@
   ok   [2] out/report.md exists
 
 === Task 3
-  baseline   build   0.00s   lookup  14.179s        1,411 lookups/s
-  yours      build   0.00s   lookup   0.008s    2,641,833 lookups/s   wrong 0
+  baseline   build   0.00s   lookup  16.521s        1,211 lookups/s
+  yours      build   0.00s   lookup   0.009s    2,290,820 lookups/s   wrong 0
   ok   [3] every answer matches the linear table  - 0 wrong
-  ok   [3] faster than the baseline  - 1872.9x
+  ok   [3] faster than the baseline  - 1892.3x
 
   7 passed, 0 failed, 1 skipped

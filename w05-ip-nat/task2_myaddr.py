@@ -9,14 +9,20 @@ the rest of the world sees, and why those two are usually different.
     python3 task2_myaddr.py --collect     # gather what your OS will tell you
     python3 task2_myaddr.py --report      # your analysis
 
+Raw measurements are archived outside Git; out/ receives a redacted summary.
+
 Run it on **two networks**. Campus Wi-Fi and phone tethering behave differently
 here, and the difference is the lesson.
 """
 import argparse, json, os, platform, subprocess
+import sys
+from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
+sys.path.insert(0, str(Path(HERE).parent))
+from network_privacy import append_private_address, public_address_record
 
 
 def sh(*cmd):
@@ -60,19 +66,20 @@ def collect(label):
     os.makedirs(OUT, exist_ok=True)
     record = {"label": label, "local": local_facts(), "public": public_address(),
               "when": datetime.now(timezone(timedelta(hours=9))).isoformat(timespec="seconds")}
+    private_path = append_private_address(record)
     path = os.path.join(OUT, "addresses.json")
     all_records = []
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
             all_records = json.load(f)
-    all_records.append(record)
+    all_records.append(public_address_record(record, len(all_records) + 1))
     with open(path + ".tmp", "w", encoding="utf-8") as f:
         json.dump(all_records, f, indent=2)
     os.replace(path + ".tmp", path)
-    print(f"  public address seen from outside: {record['public']}")
+    print("  Measurement collected; literal public IP withheld from console/public output.")
+    print(f"  private original -> {private_path}")
     print(f"  -> out/addresses.json  ({len(all_records)} record(s))")
-    print("\n  Now read the raw output yourself and answer the questions in task2.md.")
-    print("  The script deliberately does not parse it for you.")
+    print("\n  Read the private original for task2.md; publish only a redacted summary.")
 
 
 def report():

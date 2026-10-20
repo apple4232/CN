@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 import dns.flags
 import dns.message
@@ -12,6 +13,11 @@ OUT = Path(__file__).parent / 'out'
 
 
 def analyze(source, own=False, method='Windows SIO_RCVALL'):
+    global OUT
+    if own:
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from network_privacy import private_output_dir
+        OUT = private_output_dir('w03-dns')
     packets = rdpcap(str(source))
     selected, rows = [], []
     seen_packets = set()

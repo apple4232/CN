@@ -67,3 +67,5 @@ ns-tld5.charlestonroadregistry.com. 172800 IN AAAA 2001:4860:4805::69
 
 
 > Privacy: host addresses in this public copy use documentation-only substitutions; actual public IPs and device identifiers are withheld. Original measurements are retained locally outside Git.
+
+Original personal packet files are now private-only. The client address shown above is a documentation substitute, not the literal captured host address.

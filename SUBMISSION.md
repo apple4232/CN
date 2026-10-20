@@ -7,7 +7,7 @@
 ## 제출 결과
 
 - [관찰 기록](w03-dns/out/observation.md): 과제별 3줄.
-- [측정 보고서](w03-dns/out/report.md), [실제 인터페이스 캡처](w03-dns/out/dns.pcapng), [패킷 분석](w03-dns/out/capture-analysis.md).
+- [측정 보고서](w03-dns/out/report.md), 실제 인터페이스 캡처(개인정보 보호를 위해 로컬 비공개 보관), [패킷 분석](w03-dns/out/capture-analysis.md).
 - [12개 사이트 × 3 resolver 원본 응답](w03-dns/out/chains.json).
 - [캐시 벤치마크](w03-dns/out/bench.txt), [275회 하한 증명](w03-dns/out/cache-analysis.md).
 - [다섯 이름 검증](w03-dns/out/verify.txt), [추가 경계조건 테스트](w03-dns/out/regression-tests.txt).
@@ -35,3 +35,5 @@ python ../check.py w03
 두 번째 물리적 네트워크는 사용할 수 없다는 학생 답변에 따라 Task 2의 **경로 (B)**를 적용했다. 국내 ISP DNS와 Google NRT 응답 지점의 거리 차이를 NSID와 응답 시간으로 확인했다. 모든 세 resolver 비교는 **7/9**, ISP–Google 비교만 하면 **5/9**다. 동일 PC의 네트워크 이동이나 선택된 CDN replica의 가까움을 직접 증명한 실험으로 서술하지 않았다.
 
 원본의 `*/out/`와 캡처 제외 규칙에는 이번 제출 폴더만 예외를 추가했다. `w03-dns/out/`가 실제로 커밋되며, 다른 주차 실습은 원본 상태로 남아 있다.
+
+개인정보 정리 후 본인 DNS 패킷 원본은 공개 저장소에서 제거했다. 공개 분석의 단말 주소는 문서용 대체값이며 원본은 비공개로만 제출한다.
