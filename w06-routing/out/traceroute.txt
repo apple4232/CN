@@ -1,0 +1,97 @@
+Local Windows PC; home/personal network (confirmed by user).
+Real tracert -d -h 30 -w 300 output; intermediate IP addresses replaced by stable hop labels.
+Hop numbers, RTTs, timeout markers, and public destination addresses are unchanged.
+Raw evidence remains outside the repository. Labels do not encode IP addresses.
+
+=== domestic: www.korea.ac.kr (destination 163.152.6.10) ===
+  1    <1 ms    <1 ms     1 ms  [path-node-01]
+  2     *        *        *     Request timed out.
+  3     3 ms     3 ms     3 ms  [path-node-02]
+  4     3 ms     3 ms     4 ms  [path-node-03]
+  5     *        *        *     Request timed out.
+  6     6 ms     6 ms     6 ms  [path-node-04]
+  7     8 ms    10 ms     8 ms  [path-node-05]
+  8     *        *        *     Request timed out.
+  9     *        *        *     Request timed out.
+ 10     *        *        *     Request timed out.
+ 11     *        *        *     Request timed out.
+ 12     *        *        *     Request timed out.
+ 13     *        *        *     Request timed out.
+ 14     *        *        *     Request timed out.
+ 15     *        *        *     Request timed out.
+ 16     *        *        *     Request timed out.
+ 17     *        *        *     Request timed out.
+ 18     *        *        *     Request timed out.
+ 19     *        *        *     Request timed out.
+ 20     *        *        *     Request timed out.
+ 21     *        *        *     Request timed out.
+ 22     *        *        *     Request timed out.
+ 23     *        *        *     Request timed out.
+ 24     *        *        *     Request timed out.
+ 25     *        *        *     Request timed out.
+ 26     *        *        *     Request timed out.
+ 27     *        *        *     Request timed out.
+ 28     *        *        *     Request timed out.
+ 29     *        *        *     Request timed out.
+ 30     *        *        *     Request timed out.
+
+=== overseas-site: www.stanford.edu (destination 3.33.186.135) ===
+  1     1 ms     1 ms     3 ms  [path-node-01]
+  2     *        *        *     Request timed out.
+  3     6 ms     4 ms     3 ms  [path-node-02]
+  4     9 ms     5 ms     4 ms  [path-node-06]
+  5     *        *        *     Request timed out.
+  6     *        *        *     Request timed out.
+  7     5 ms     5 ms    20 ms  [path-node-07]
+  8     5 ms     5 ms     5 ms  [path-node-08]
+  9     *        *        *     Request timed out.
+ 10     *        *        *     Request timed out.
+ 11     *        *        *     Request timed out.
+ 12     *        *        *     Request timed out.
+ 13     *        *        *     Request timed out.
+ 14     *        *        *     Request timed out.
+ 15     *        *        *     Request timed out.
+ 16     6 ms     9 ms     7 ms  3.33.186.135
+
+=== anycast: 1.1.1.1 (destination 1.1.1.1) ===
+  1     4 ms     1 ms     1 ms  [path-node-01]
+  2     *        *        *     Request timed out.
+  3     4 ms     4 ms     2 ms  [path-node-02]
+  4     5 ms     4 ms     3 ms  [path-node-06]
+  5     *        *        *     Request timed out.
+  6     *        *        *     Request timed out.
+  7     6 ms     5 ms     *     [path-node-09]
+  8     8 ms     7 ms     8 ms  [path-node-10]
+  9    16 ms     6 ms     6 ms  1.1.1.1
+
+=== additional-overseas-probe: gaia.cs.umass.edu (destination 128.119.245.12) ===
+  1    <1 ms    <1 ms    <1 ms  [path-node-01]
+  2     *        *        *     Request timed out.
+  3    17 ms    12 ms     3 ms  [path-node-02]
+  4     4 ms     4 ms     3 ms  [path-node-03]
+  5     8 ms     7 ms     7 ms  [path-node-11]
+  6     7 ms     6 ms     7 ms  [path-node-12]
+  7   130 ms   129 ms   128 ms  [path-node-13]
+  8     *      132 ms   132 ms  [path-node-14]
+  9   186 ms     *      185 ms  [path-node-15]
+ 10   184 ms   185 ms     *     [path-node-16]
+ 11   186 ms   186 ms     *     [path-node-17]
+ 12   189 ms   187 ms     *     [path-node-18]
+ 13   187 ms   197 ms     *     [path-node-19]
+ 14   188 ms   188 ms     *     [path-node-20]
+ 15     *        *        *     Request timed out.
+ 16   189 ms   189 ms     *     [path-node-21]
+ 17   187 ms   188 ms     *     [path-node-22]
+ 18   187 ms   187 ms     *     [path-node-23]
+ 19     *        *        *     Request timed out.
+ 20   190 ms   189 ms     *     128.119.245.12
+ 21   187 ms   187 ms     *     128.119.245.12
+ 22   189 ms   187 ms     *     128.119.245.12
+ 23   187 ms   187 ms     *     128.119.245.12
+ 24   188 ms   195 ms     *     128.119.245.12
+ 25   187 ms   187 ms     *     128.119.245.12
+ 26   192 ms   187 ms     *     128.119.245.12
+ 27   187 ms   187 ms     *     128.119.245.12
+ 28   192 ms   188 ms     *     128.119.245.12
+ 29   188 ms   188 ms     *     128.119.245.12
+ 30   187 ms   188 ms     *     128.119.245.12

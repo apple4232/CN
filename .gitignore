@@ -23,3 +23,5 @@ w03-dns/out/capture-status.txt
 w03-dns/out/dns.pcapng
 *.raw.json
 .private/
+!w06-routing/out/
+!w06-routing/out/**

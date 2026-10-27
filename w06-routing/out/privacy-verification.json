@@ -1,0 +1,7 @@
+{
+  "intermediate_addresses_checked": 23,
+  "public_files_checked": 23,
+  "raw_outside_checkout": true,
+  "files_with_address_leaks": [],
+  "passed": true
+}

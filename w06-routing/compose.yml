@@ -1,0 +1,48 @@
+name: cnw06
+services:
+  r1:
+    image: quay.io/frrouting/frr:9.1.0
+    privileged: true
+    volumes:
+      - ./topology/r1:/etc/frr
+    networks:
+      net_a:
+        ipv4_address: 10.206.61.2
+      net_b:
+        ipv4_address: 10.206.62.2
+  r2:
+    image: quay.io/frrouting/frr:9.1.0
+    privileged: true
+    volumes:
+      - ./topology/r2:/etc/frr
+    networks:
+      net_b:
+        ipv4_address: 10.206.62.3
+      net_c:
+        ipv4_address: 10.206.63.2
+  r3:
+    image: quay.io/frrouting/frr:9.1.0
+    privileged: true
+    volumes:
+      - ./topology/r3:/etc/frr
+    networks:
+      net_c:
+        ipv4_address: 10.206.63.3
+      net_a:
+        ipv4_address: 10.206.61.3
+networks:
+  net_a:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.206.61.0/29
+  net_b:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.206.62.0/29
+  net_c:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.206.63.0/29

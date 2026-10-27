@@ -1,0 +1,12 @@
+test_disconnect_and_reconnect_component (__main__.RoutingTests.test_disconnect_and_reconnect_component) ... ok
+test_equal_cost_tie_depends_on_first_predecessor_not_smallest_hop (__main__.RoutingTests.test_equal_cost_tie_depends_on_first_predecessor_not_smallest_hop) ... ok
+test_incremental_equal_cost_switch_propagates_to_descendants (__main__.RoutingTests.test_incremental_equal_cost_switch_propagates_to_descendants) ... ok
+test_negative_cost_rejected (__main__.RoutingTests.test_negative_cost_rejected) ... ok
+test_seeded_event_sequences_match_reference_after_every_event (__main__.RoutingTests.test_seeded_event_sequences_match_reference_after_every_event) ... ok
+test_unreachable_and_source_exclusion (__main__.RoutingTests.test_unreachable_and_source_exclusion) ... ok
+test_zero_cost_links_use_conservative_counted_rebuild (__main__.RoutingTests.test_zero_cost_links_use_conservative_counted_rebuild) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.652s
+
+OK

@@ -1,0 +1,11 @@
+Real FRR / Docker / WSL measurement; all IPs below are task-created lab addresses.
+Status: completed
+Time starts before the change command. It includes command execution and route observation latency.
+Checks use the selected/FIB next hops for all three routers; route-age text is ignored.
+
+interface_down: first_correct=2.099863s; last_incorrect=0.000000s; confirmed=4.169642s; action_completed=0.403421s
+interface_restore: first_correct=7.841088s; last_incorrect=6.000448s; confirmed=9.820825s; action_completed=0.470179s
+cost_10_to_100: first_correct=2.133815s; last_incorrect=0.000000s; confirmed=4.165366s; action_completed=0.526330s
+cost_restore: first_correct=2.231104s; last_incorrect=0.000000s; confirmed=4.183078s; action_completed=0.581804s
+silent_hello_loss: first_correct=39.528359s; last_incorrect=37.880284s; confirmed=41.282512s; action_completed=0.795696s
+silent_restore: first_correct=18.950492s; last_incorrect=17.159660s; confirmed=20.909710s; action_completed=0.771547s

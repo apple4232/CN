@@ -24,6 +24,10 @@ Details and requirements are in **`task1.md`**, **`task2.md`**, **`task3.md`**.
 
 ## Running everything
 
+실제 완료한 실험의 실행 방법과 원본 도우미의 주의점은 [IMPLEMENTATION.md](IMPLEMENTATION.md)에 있습니다.
+이번 실측은 로컬 WSL의 Docker Engine에서 `sudo python3 measure_ospf.py`로 수행했으며,
+측정 후 실습 컨테이너·네트워크와 임시 OSPF 멀티캐스트 규칙을 정리합니다.
+
 ```bash
 python3 task1_linkstate.py --verify
 bash scenario.sh up                   # Task 2 - needs Docker

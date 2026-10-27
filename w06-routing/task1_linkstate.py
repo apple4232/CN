@@ -14,6 +14,30 @@ in the packet. Build it.
     python3 task1_linkstate.py --verify
 """
 import argparse
+import heapq
+
+
+def _spf(graph, source):
+    if source not in graph:
+        raise ValueError('source must be a graph node')
+    distances, hops = {source: 0}, {}
+    queue, settled = [(0, source)], set()
+    while queue:
+        cost, node = heapq.heappop(queue)
+        if node in settled:
+            continue
+        settled.add(node)
+        for neighbor, weight in sorted(graph.get(node, {}).items()):
+            if weight < 0:
+                raise ValueError('Dijkstra requires nonnegative link costs')
+            if neighbor in settled:
+                continue
+            candidate = cost + weight
+            if candidate < distances.get(neighbor, float('inf')):
+                distances[neighbor] = candidate
+                hops[neighbor] = neighbor if node == source else hops[node]
+                heapq.heappush(queue, (candidate, neighbor))
+    return distances, hops
 
 # Undirected weighted graph: node -> {neighbour: cost}
 TOPOLOGY = {
@@ -33,7 +57,10 @@ def dijkstra(graph, source):
 
     You write the loop. `heapq` is allowed; `networkx` is not.
     """
-    raise NotImplementedError("implement Dijkstra")
+    distances, _ = _spf(graph, source)
+    # The supplied worked-example verifier excludes the source's trivial 0 cost.
+    distances.pop(source)
+    return distances
 
 
 def forwarding_table(graph, source):
@@ -48,7 +75,8 @@ def forwarding_table(graph, source):
     works, but think about what a router does when two shortest paths tie, and
     pick a rule. Say which in observation.md.
     """
-    raise NotImplementedError("implement the forwarding table")
+    _, hops = _spf(graph, source)
+    return hops
 
 
 def link_down(graph, a, b):

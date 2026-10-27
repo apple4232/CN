@@ -1,0 +1,67 @@
+  baseline       SPF runs  1001   wall   2.59s
+  yours          SPF runs   212   wall   3.38s   wrong after 0 event(s)
+  yours-no-oracle SPF runs   212   wall   0.64s
+
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.2",
+  "baseline": {
+    "time": 2.5888672000728548,
+    "wrong": 0,
+    "spf": 1001
+  },
+  "checked": {
+    "time": 3.383651199983433,
+    "wrong": 0,
+    "spf": 212
+  },
+  "same_condition_without_oracle": {
+    "time": 0.6352538999635726,
+    "wrong": 0,
+    "spf": 212
+  },
+  "spf_avoided_fraction": 0.7882117882117883,
+  "event_counters": {
+    "noop": 77,
+    "unused_increase_or_failure": 397,
+    "non_improving_decrease_or_restore": 181,
+    "recomputed": 211,
+    "incremental_repairs": 134,
+    "incremental_vertices_total": 458,
+    "incremental_vertices_max": 37
+  },
+  "initial_metadata_deep_bytes": 44770,
+  "metadata_note": "getsizeof recursive snapshot for distances+parents; shared values counted once; excludes graph, table, code and transient heap",
+  "task1": {
+    "costs": {
+      "v": 2,
+      "w": 3,
+      "x": 1,
+      "y": 2,
+      "z": 4
+    },
+    "before": {
+      "v": "v",
+      "w": "x",
+      "x": "x",
+      "y": "x",
+      "z": "x"
+    },
+    "after": {
+      "v": "v",
+      "w": "w",
+      "x": "v",
+      "y": "v",
+      "z": "v"
+    },
+    "changed": [
+      "w",
+      "x",
+      "y",
+      "z"
+    ],
+    "unchanged": [
+      "v"
+    ]
+  }
+}
